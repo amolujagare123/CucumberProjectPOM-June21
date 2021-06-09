@@ -12,14 +12,55 @@ public class DarkSkyHomePage extends Base{
     By tempRowText = By.xpath("//span[@class='summary swap']"); //99˚ Clear.
     By timelineTempRowText = By.xpath("//span[@class='first']//span"); // 99°
     By timeRowList = By.xpath("//span[@class='hour']/span");
-    By todaysTemp = By.xpath("//a[@data-day='0']");
+    By todaysTemp = By.xpath("//a[@data-day='0']/span[@class='toggle']");
+
+    By barMinTemp = By.xpath("//a[@class='day revealed']//span[@class='minTemp']");
+    By barMaxTemp = By.xpath("//a[@class='day revealed']//span[@class='maxTemp']");
+
+    By timelineMinTemp = By.xpath("//div[@class='dayDetails revealed']//span[@class='highTemp swip']//span[@class='temp']");
+    By timelineMaxTemp = By.xpath("//div[@class='dayDetails revealed']//span[@class='lowTemp swap']//span[@class='temp']");
+
+    By lnkDarkSkyAPI = By.xpath("//a[normalize-space()='Dark Sky API']");
+
+    public void clickLnkDarkskyAPI()
+    {
+        clickOn(lnkDarkSkyAPI);
+    }
+
+
+    public ArrayList<String> getBarTempList()
+    {
+        String minTemp = getTextFromElement(barMinTemp).split("˚")[0]; // 93˚
+        String maxTemp = getTextFromElement(barMaxTemp).split("˚")[0]; // 93˚
+
+        ArrayList<String> tempList = new ArrayList<>();
+        tempList.add(minTemp);
+        tempList.add(maxTemp);
+        System.out.println("Bar tempList="+tempList);
+        return tempList;
+    }
+
+    public ArrayList<String> timelineTempList()
+    {
+        String minTemp = getTextFromElement(timelineMinTemp).split("˚")[0]; // 93˚
+        String maxTemp = getTextFromElement(timelineMaxTemp).split("˚")[0]; // 93˚
+
+        ArrayList<String> tempList = new ArrayList<>();
+        tempList.add(minTemp);
+        tempList.add(maxTemp);
+        System.out.println("Timeline tempList="+tempList);
+        return tempList;
+    }
+
 
     public void clickTodayTemp()
     {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
-        js.executeScript("window.scrollBy(0,900)");
+        js.executeScript("window.scrollBy(0,1000)");
 
-        clickOn(todaysTemp);
+        js.executeScript("arguments[0].click()",
+        webAction(todaysTemp));
+        //clickOn(todaysTemp);
     }
 
 

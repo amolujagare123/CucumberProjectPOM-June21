@@ -76,6 +76,13 @@ public class DarkskySD {
     public void i_verify_todays_lowest_and_highest_temp_is_displayed_correctly()
     {
         darkSkyHomePage.clickTodayTemp();
+
+        ArrayList<String> expected = darkSkyHomePage.getBarTempList();
+
+        ArrayList<String> actual = darkSkyHomePage.timelineTempList();
+
+        Assert.assertEquals("Temp List are different",expected,actual);
+
     }
 
 
