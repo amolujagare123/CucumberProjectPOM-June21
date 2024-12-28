@@ -11,7 +11,7 @@ public class TutorialSites {
 
     @BeforeClass
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
