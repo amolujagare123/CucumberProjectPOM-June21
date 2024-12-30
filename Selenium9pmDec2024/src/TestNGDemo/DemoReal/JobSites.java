@@ -1,6 +1,7 @@
 package TestNGDemo.DemoReal;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -32,6 +33,9 @@ public class JobSites {
     public void monster() {
         driver.get("https://www.monster.com");
         System.out.println("Navigated to Monster");
+        Assert.assertEquals(driver.getTitle(),
+                "monster",
+                "The title is different");
     }
 
     @Test
